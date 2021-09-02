@@ -20,6 +20,7 @@
   position: fixed;
   top: 0;
   display: flex;
+  justify-content: space-between;
   align-items: center;
   max-height: 8vh;
   min-width: 100vw;
@@ -45,6 +46,17 @@
   border-radius: 3px;
   width: 46vw;
   height: 85vh;
+}
+
+.PanelHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.PanelButton {
+  padding: 20px;
+  color: white;
 }
 
 .Preview,
@@ -73,7 +85,7 @@
   text-align: left;
 }
 
-// MARKDOWN STYLES
+/* // MARKDOWN STYLES */
 #preview blockquote {
   border-left: 3px solid #22264b;
   color: #223b4b;

@@ -5,6 +5,10 @@ import remarkGfm from 'remark-gfm';
 import remarkBreaks from 'remark-breaks';
 import {Prism as SyntaxHighlighter} from 'react-syntax-highlighter';
 import {coldarkDark} from 'react-syntax-highlighter/dist/esm/styles/prism';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faMarkdown, faGithub } from '@fortawesome/free-brands-svg-icons'
+import { faDesktop, faCode } from '@fortawesome/free-solid-svg-icons'
+import { faKeyboard, faCopy } from '@fortawesome/free-regular-svg-icons'
 
 const defaultMarkdown = `# Welcome to my React Markdown Previewer!
 
@@ -54,7 +58,10 @@ And here. | Okay. | I think we get it.
 function Navbar() {
   return (
     <div className="Navbar">
-      <h1 className="PageText">Markdown Previewer</h1>
+      <h1 className="PageText"><FontAwesomeIcon icon={faMarkdown} /> Markdown Previewer</h1>
+      <a href='https://guides.github.com/features/mastering-markdown/' className='PanelButton' target='_blank'>
+        <FontAwesomeIcon icon={faGithub} size='lg' /> Markdown Guide
+        </a>
     </div>
   )
 }
@@ -78,16 +85,23 @@ render(){
     <div className="Main">
       <div className="Panel">
         <div className="Editor">
-          <h3 className="PageText">Edit Markdown</h3>
+          <div className="PanelHeader">
+            <h3 className="PageText"><FontAwesomeIcon icon={faKeyboard} size='lg' /> Edit Markdown</h3>
+            <a href='#' className='PanelButton' onClick={() =>  navigator.clipboard.writeText(this.state.input)}><FontAwesomeIcon icon={faCopy} size='md' /></a>
+          </div>
           <textarea className="Input" id="editor" onChange={this.handleInput}>{this.state.input}</textarea>
       </div>
       </div>
       <div className="Panel">
         <div className="Preview">
-          <h3 className="PageText">Preview Result</h3>
+        <div className="Editor">
+          <div className="PanelHeader">
+            <h3 className="PageText"><FontAwesomeIcon icon={faDesktop} size='md' /> Preview Result</h3>
+            <a href='#' className='PanelButton'><FontAwesomeIcon icon={faCode} size='md' /></a>
+          </div>
           <div className="Output" id="preview">
             <ReactMarkdown
-            children={this.state.input} remarkPlugins={[remarkGfm],[remarkBreaks
+            children={this.state.input} remarkPlugins={[remarkGfm], [remarkBreaks
             ]}
             components={{
               code({node, inline, className, children, ...props}) {
@@ -109,6 +123,7 @@ render(){
             }}
           />
         </div>
+    </div>
     </div>
     </div>
     </div>
