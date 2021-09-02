@@ -1,7 +1,10 @@
 import './App.css';
-import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm'
 import React from 'react';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
+import remarkBreaks from 'remark-breaks';
+import {Prism as SyntaxHighlighter} from 'react-syntax-highlighter';
+import {coldarkDark} from 'react-syntax-highlighter/dist/esm/styles/prism';
 
 const defaultMarkdown = `# Welcome to my React Markdown Previewer!
 
@@ -51,7 +54,7 @@ And here. | Okay. | I think we get it.
 function Navbar() {
   return (
     <div className="Navbar">
-      <h1>Markdown Previewer</h1>
+      <h1 className="PageText">Markdown Previewer</h1>
     </div>
   )
 }
@@ -75,15 +78,36 @@ render(){
     <div className="Main">
       <div className="Panel">
         <div className="Editor">
-          <h3>Edit Markdown</h3>
+          <h3 className="PageText">Edit Markdown</h3>
           <textarea className="Input" id="editor" onChange={this.handleInput}>{this.state.input}</textarea>
       </div>
       </div>
       <div className="Panel">
         <div className="Preview">
-          <h3>Preview Result</h3>
+          <h3 className="PageText">Preview Result</h3>
           <div className="Output" id="preview">
-          <ReactMarkdown children={this.state.input} remarkPlugins={[remarkGfm]} />
+            <ReactMarkdown
+            children={this.state.input} remarkPlugins={[remarkGfm],[remarkBreaks
+            ]}
+            components={{
+              code({node, inline, className, children, ...props}) {
+                const match = /language-(\w+)/.exec(className || '')
+                return !inline && match ? (
+                  <SyntaxHighlighter
+                    children={String(children).replace(/\n$/, '')}
+                    style={coldarkDark}
+                    language={match[1]}
+                    PreTag="div"
+                    {...props}
+                  />
+                ) : (
+                  <code className={className} {...props}>
+                    {children}
+                  </code>
+                )
+              }
+            }}
+          />
         </div>
     </div>
     </div>
