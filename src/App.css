@@ -12,8 +12,7 @@
 
 .PageText {
   text-align: left;
-  padding: 0% 2%;
-  margin: 2%;
+  padding: 1% 2% 0 2%;
 }
 
 .Navbar {
@@ -22,30 +21,34 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  max-height: 8vh;
-  min-width: 100vw;
+  max-height: 6vh;
+  width: 100vw;
+  max-width: 1440px;
 }
 
 .Main {
   position: fixed;
-  top: 10vh;
+  top: 5vh;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   width: 95vw;
-  height: 90vh;
+  max-width: 1440px;
+  height: 95vh;
 }
 
 .Panel {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  background-color: grey;
-  border-radius: 3px;
+  align-items: left;
+  justify-content: space-around;
+  margin: 0 1%;
   width: 46vw;
-  height: 85vh;
+  height: 90vh;
+  background-color: grey;
+  border-radius: 5px;
+  box-shadow: 7px 7px 10px rgb(43, 43, 43);
 }
 
 .PanelHeader {
@@ -55,18 +58,8 @@
 }
 
 .PanelButton {
-  padding: 20px;
+  padding: 2% 4% 0 2%;
   color: white;
-}
-
-.Preview,
-.Editor {
-  display: flex;
-  flex-direction: column;
-  align-items: left;
-  justify-content: space-around;
-  width: 46vw;
-  height: 85vh;
 }
 
 .Input,
@@ -75,20 +68,26 @@
   border: none;
   margin: 2.5%;
   padding: 15px 20px;
-  height: 70vh;
+  height: 90%;
   background-color: #2b3a37;
+  border-radius: 3px;
   overflow: scroll;
 }
 
+.Input {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+/* // MARKDOWN STYLES */
 .Output {
   font-size: 0.8rem;
   text-align: left;
 }
 
-/* // MARKDOWN STYLES */
 #preview blockquote {
-  border-left: 3px solid #22264b;
-  color: #223b4b;
+  border-left: 3px solid #5b68e0;
+  color: white;
   padding-left: 5px;
   margin-left: 25px;
 }
@@ -99,23 +98,31 @@
 
 #preview code {
   background: rgb(41, 41, 41);
-  color: rgb(40, 206, 40);
+  color: rgb(198, 215, 238);
 }
 
 #preview pre {
   display: block;
   overflow: auto;
   background: rgb(41, 41, 41);
-  padding: 5px;
+  padding: 5px 10px;
+  margin-left: 2px;
+  border-radius: 5px;
   line-height: 1.2;
 }
 
 #preview h1 {
-  border-bottom: 2px solid white;
+  border-bottom: 1px solid white;
+  margin-bottom: 1rem;
 }
 
 #preview h2 {
   border-bottom: 1px solid white;
+  margin-bottom: 1rem;
+}
+
+#preview h3 {
+  margin-bottom: 1rem;
 }
 
 #preview table {
@@ -124,7 +131,7 @@
 
 #preview td,
 th {
-  border: 2px solid white;
+  border: 1px solid white;
   padding-left: 5px;
   padding-right: 5px;
 }
@@ -133,4 +140,25 @@ th {
   display: block;
   max-width: 90%;
   margin: 2rem auto;
+}
+
+@media screen and (max-width: 1000px) {
+  .Navbar {
+    max-height: 10vh;
+    font-size: 0.9rem;
+  }
+  .Main {
+    flex-direction: column;
+    justify-content: space-around;
+    top: 6vh;
+    height: 94vh;
+    font-size: 0.9rem;
+  }
+  .Panel {
+    margin: 0 1%;
+    width: 90vw;
+    height: 45vh;
+    background-color: grey;
+    border-radius: 5px;
+  }
 }
