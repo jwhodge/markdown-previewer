@@ -4,6 +4,8 @@
 
 The goal of this project was to build a tool for previewing GFM. 
 
+##[Live Version Here](https://jwhodge.github.io/markdown-previewer/)
+
 ## Technologies used
 - React
 - CSS
